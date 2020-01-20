@@ -1,8 +1,9 @@
 #!/bin/bash 
 
 ###################################################################
-#Script Name	: alias.sh                                                                                      
-#Description	: k8s alias resources                                                                          
+#Script Name	: run.sh                                                                                      
+#Description	: awesome release logger. A script for generate release log/change log
+#                from git history.
 #Args         :                                                                                           
 #Author       : Nixon <nixon613@gmail.com>
 ###################################################################
