@@ -1,0 +1,21 @@
+<!-- TITLE: <relese_date> -->
+<!-- Type: <release_type> -->
+
+Project Name
+==============
+
+***<release_type>***
+
+**Date:** *<relese_date>*
+
+**Version:** *<relese_tag>*
+
+---
+
+**Fix/Feature included:**
+
+<release_log>
+
+---
+
+**Remote Diff:** [<release_diff_url_title>](release_diff_actual_url)
