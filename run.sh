@@ -38,10 +38,18 @@ TAG_CREATE="git tag $NEW_TAG"
 # create the tag
 eval $TAG_CREATE
 
+# now push the tag
+# TAG_PUSH="git push origin $NEW_TAG"
+# eval $TAG_PUSH
+
 # now get the diff
 DIFF_COMMAND="$DIFF_COMMAND$NEW_TAG > log.log"
 
 # run the diff command
 eval $DIFF_COMMAND
 
+# show the log file in terminal
 eval "cat $MYDIR/log.log"
+
+
+# get repo name basename -s .git `git config --get remote.origin.url`
