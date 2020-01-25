@@ -35,6 +35,27 @@ read -p "Enter Your New Tag no: " NEW_TAG
 # make the tag creation command
 TAG_CREATE="git tag $NEW_TAG"
 
+# get repo name basename -s .git `git config --get remote.origin.url`
+
+# now build the veriables for replacing
+RELEASE_TYPE=''
+echo "************ select the release type ************"
+echo "  1)HotFix"
+echo "  2)BugFix"
+echo "  3)Feature"
+echo "  4)Patch" 
+read n
+case $n in
+  1) RELEASE_TYPE='HotFix';;
+  2) RELEASE_TYPE='BugFix';;
+  3) RELEASE_TYPE='Feature';;
+  4) RELEASE_TYPE='Patch';;
+  *) echo "invalid option";;
+esac
+
+# current date
+CURRENT_DATE="$(date +'%d-%m-%Y')"
+
 # create the tag
 eval $TAG_CREATE
 
@@ -49,7 +70,12 @@ DIFF_COMMAND="$DIFF_COMMAND$NEW_TAG > log.log"
 eval $DIFF_COMMAND
 
 # show the log file in terminal
-eval "cat $MYDIR/log.log"
+RELEASE_COMMITS=$(<$MYDIR/log.log)
+echo "$RELEASE_COMMITS" 
+
+# to print out stuffs
+cat release-templase.tmd | sed s/\<relese_date\>/$CURRENT_DATE/ | sed s/\<release_type\>/$RELEASE_TYPE/ | sed s/\<relese_tag\>/$NEW_TAG/ | sed s/\<release_log\>/$RELEASE_COMMITS/
 
 
-# get repo name basename -s .git `git config --get remote.origin.url`
+#TODO:  remove this
+eval "git tag -d $NEW_TAG"
